@@ -7,13 +7,14 @@ import {
   BrowserRouter
 } from "react-router-dom";
 import Menu from "./landing/Menu.js";
-import Particles from 'react-particles-js';
+import Particles from 'react-tsparticles';
 import Typed from "react-typed";
 import "./landing/Menu.css"
 import About from "./landing/About.js";
 import Contact from "./landing/Contact.js";
 import Projects from "./landing/Projects.js";
 import SocialFlow from "./landing/SocialFlow.js";
+import Bot from "./landing/Bot.js";
 export default function Routes(){
     useEffect(() => {
         const hamburger_menu = document.querySelector(".hamburger-menu");
@@ -118,11 +119,14 @@ export default function Routes(){
             },
         }}
       />
+      
       <div class="overlay">
             <Route exact path="/" component={Menu} />
             <Route exact path="/about" component={About}/>
             <Route exact path="/contact" component={Contact}/>
             <Route exact path="/projects" component={Projects}/>
+            <Route exact path="/bot" component={Bot}/>
+            <h1 className="copyright">© 2021 - Ujjwal joshi</h1>
             </div>
           </header>
         </div>
@@ -145,6 +149,9 @@ export default function Routes(){
           <li>
           <a  className="m4" onClick={handleMenu}><Link to='/contact'>Contact</Link></a>
           </li>
+          {/* <li>
+          <a  className="m5" onClick={handleMenu}><Link to='/bot'>Chat</Link></a>
+          </li> */}
         </ul>
       </div>
     </div>

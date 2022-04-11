@@ -10,6 +10,11 @@
   font-family: "Poppins", sans-serif;
 }
 
+.webgl{
+  z-index: 1000000;
+  background: #12D8FA;
+}
+
 .containers {
   min-height: 100vh;
   width: 100%;
@@ -20,7 +25,6 @@
 }
 
 .navbar {
-  /* position: fixed; */
   top: 0;
   left: 0;
   width: 100%;
@@ -115,10 +119,23 @@
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(43, 51, 59, 0.8);
+  background-color: rgba(43, 51, 59, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
+}
+
+.copyright{
+    color:whitesmoke;
+    font-size:1rem;
+    /* opacity: 80%; */
+    position:absolute;
+    right:1rem;
+    bottom:2rem;
+}
+.copyright:hover{
+    color: orangered;
 }
 
 .inner {
@@ -180,22 +197,23 @@
 }
 
 .home-photo{
-    display: block;
-    position: relative;
-    width: 100%;
-    padding-bottom: calc(100% - 2.29rem);
+    display:flex;
+    color: #12fa44;
+    position:relative;
+    background-position: center;
+    width: 50%;
+    padding-bottom: calc(100% - 2.5rem);
     padding-right: calc(100% - 2.5rem);
-    background-color: #fff;
-    border-radius: 62.5rem;
-    border: 1.125rem solid rgb(56, 54, 54);
+    border-collapse: separate;
+    border-radius: 60rem;
     overflow: hidden;
-    -webkit-box-shadow: 0 0 25px 0 rgba(0,0,0,.1);
-    -moz-box-shadow: 0 0 25px 0 rgba(0,0,0,.1);
-    box-shadow: 0 0 25px 0 rgba(0,0,0,.1);
+    -webkit-box-shadow: 0 0 15px 0 whitesmoke;
+    -moz-box-shadow: 0 0 15px 0 whitesmoke;
+    box-shadow: 0 0 10px 0 black;
 }
 
-.home-photo .hp-inner{
-    background-image: url(../assets/profilic.jpg);
+.hp-inner{
+    background-image:url(../assets/profilic.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -207,10 +225,14 @@
     bottom: -1.125rem;
     left: -1.125rem;
     right: -1.125rem;
+    -webkit-filter:blur(1px);
+    pointer-events: all;
+    
 }
 
 .home-photo .hp-inner:hover{
-    transform: scale(1.1) !important;
+    transform: scale(1.05) !important;
+    -webkit-filter:blur(0);
 }
 
 .home-text{
@@ -221,43 +243,75 @@
 
 .home-buttons {
     margin-top: 27px;
+    
 }
 
 
 .aboutformat{
     max-width: 70rem;
     text-align: center;
-    color: white;
+    color: orangered;
     padding: 0 2rem;
 }
 
 .about{
     margin-top: 1.5rem;
-    color:orangered;
+    color:white;
     font-size: 2rem;
     text-align: left;
     font-weight:35  0;
+    background-color:rgba(48, 50, 51, 0.4) ;
 }
 
-.about:hover{
-    color:orange;
-}
-
-.bttn {
+.bttn{
   margin-top: 1rem;
   padding: 0.6rem 1.8rem;
-  background-color:white;
+  background-image:linear-gradient(to right, #4CB8C4 0%, #3CD3AD 51%, #4CB8C4 100%);
   border: none;
   border-radius: 25px;
   color: black;
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
+  pointer-events: all;
+
+}
+.bttn:hover{
+  background-image:linear-gradient(to right, #1FA2FF 0%, #12D8FA 51%, #1FA2FF 100%);
 }
 
-.bttn:hover{
-    background-color:orangered;
-    color:white;
+.bttn_a {
+  margin-top: 1rem;
+  padding: 0.6rem 1.8rem;
+  background-image:linear-gradient(to right, #4CB8C4 0%, #3CD3AD 51%, #4CB8C4 100%);
+  border: none;
+  border-radius: 25px;
+  color: black;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  pointer-events: all;
+}
+
+.bttn_b{
+  margin-top: 1rem;
+  padding: 0.6rem 1.8rem;
+  /* background-image:linear-gradient(to right, #1fff32 0%, #12fa44 51%, #ceff1f 100%); */
+  background-image: linear-gradient(to right, #4CB8C4 0%, #3CD3AD 51%, #4CB8C4 100%);
+  border: none;
+  border-radius: 25px;
+  color: black;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  pointer-events: all;
+}
+
+
+
+
+.bttn_a:hover{
+    background-image:linear-gradient(to right, #1fff32 0%, #12fa44 51%, #ceff1f 100%);
 }
 
 .typed-text{
@@ -459,6 +513,7 @@ ul {
     width: 60rem;
     text-align: center;
     color: #fff;
+    pointer-events: all;
 }
 
 .okay{
@@ -471,3 +526,6 @@ ul {
 }
 
 
+.subtitle{
+    color: orangered;
+}
