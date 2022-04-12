@@ -9,8 +9,7 @@ const Menu=() => {
         };
     return (
         <div class="inner" >
-        <h2 class="title">
-        Ujjwal Joshi</h2>
+        <h2 class="title">Ujjwal Joshi</h2>
                 <p><Typed className="typed-text"
                  strings={["Developer.","","Designer.",""]}
                  typeSpeed={40}
@@ -18,7 +17,7 @@ const Menu=() => {
                  loop
                  /></p>
                 <button class="bttn" onClick={handleMenu} >Read more</button>
-              </div>
+        </div>
     )
 }
 export default Menu
