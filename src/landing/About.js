@@ -9,7 +9,6 @@ const About=() => {
     return (
         <div class="aboutformat">  
             <h2 class="title">About Me</h2>
-            <br/>
             <div class="row flex-v-align">
                 <div class="col-sm-12 col-md-5 col-lg-5">
                     {/* <div class="home-photo"> */}

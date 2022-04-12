@@ -1,55 +1,95 @@
 import * as THREE from 'three';
-import React, {useEffect ,useRef } from "react";
+import gsap from 'gsap';
+import React, {useEffect ,useRef ,useState ,useMemo} from "react";
 import ReactDOM from "react-dom";
 import { TextureLoader } from 'three';
-// import vertexShader from './shaders/vertex.glsl'
-// import fragmentShader from 'raw-loader!glslify-loader!./shaders/fragment.glsl'
+import vertexShader from './shaders/vertex.glsl'
+import fragmentShader from './shaders/fragment.glsl'
+
+import atomvertexShader from './shaders/atomvertex.glsl'
+import atomfragmentShader from './shaders/atomfragment.glsl'
+import { animate } from 'tsparticles/Utils';
 
 
-const Three=()=>{   
-    var mountRef = useRef(null);
+const Three=()=>{  
+  // const data = useMemo(()=>({
+  //   x:mouse.x,
+  //   y:mouse.y
+  //   }), [mouse]);
+    const sizes = {
+      width: 400,
+      height: 400,
+    };
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height,0.1,1000);
+    
+    const img=require('../assets/globe.jpg').default
+    const texture=new THREE.TextureLoader()
+    const loader=texture.load(img);
+
+    const sphere = new THREE.Mesh(
+      new THREE.SphereGeometry(5, 50, 50),
+      new THREE.ShaderMaterial({
+        vertexShader,
+        fragmentShader,
+        uniforms:{
+          globeTexture:{
+            value: loader
+          }
+        }
+      })
+      // new THREE.MeshBasicMaterial({ map : loader})
+      );
+    // create atmosphere
+    const atmosphere = new THREE.Mesh(
+      new THREE.SphereGeometry(5, 50, 50),
+      new THREE.ShaderMaterial({
+        vertexShader:atomvertexShader,
+        fragmentShader:atomfragmentShader,
+        blending:THREE.AdditiveBlending,
+        side:THREE.BackSide
+      })
+      );
+    const group=new THREE.Group()
     useEffect(()=>{
-      // const fragmentShader = glslify(require('./shaders/fragment.glsl'))
-      // console.log(fragmentShader)
       const canvas = document.querySelector("canvas.webgl");
-      const scene = new THREE.Scene();
-      const sizes = {
-        width: 400,
-        height: 400,
-      };
-      const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height,0.1,1000);
-      
-      const img=require('../assets/globe.jpg').default
-      const texture=new THREE.TextureLoader()
-      const loader=texture.load(img);
-
-      const mesh = new THREE.Mesh(
-        new THREE.SphereGeometry(5, 50, 50),
-        // new THREE.ShaderMaterial({
-        //   vertexShader,
-        //   fragmentShader
-        // })
-        new THREE.MeshBasicMaterial({ map : loader})
-        );
-      scene.add(mesh);
+      scene.add(sphere);
+      atmosphere.scale.set(1.1,1.1,1.1)
+      scene.add(atmosphere);
       camera.position.z = 10;
       scene.add(camera);
-
+      group.add(sphere)
+      scene.add(group)
       const renderer = new THREE.WebGLRenderer({
         canvas: canvas,
-        antialias:true
+        antialias:true,
+        alpha: true
       });
       renderer.setSize(sizes.width, sizes.height);
       renderer.setPixelRatio(window.devicePixelRatio)
-
+      const clock = new THREE.Clock();
+      const elapsedTime = clock.getElapsedTime();
+      const mouse={
+        x:0,
+        y:0
+      }
       function animate(){
         requestAnimationFrame(animate)
         renderer.render(scene,camera)
+        sphere.rotation.y +=0.002
+        gsap.to(group.rotation,{
+          x:-mouse.y * 0.3,
+          y:mouse.x*0.5,
+          duration:2
+        })
       }
       animate()
+      canvas.addEventListener('mousemove',(obj)=>{ 
+        mouse.x=(obj.clientX/sizes.width)*2-1
+        mouse.y=-(obj.clientY/sizes.height)*2-1
+      })
     },[]);
-
-    return (
+    return ( 
       <canvas className='webgl'>
         </canvas>
     );

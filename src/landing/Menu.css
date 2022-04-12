@@ -12,7 +12,9 @@
 
 .webgl{
   z-index: 1000000;
-  background: #12D8FA;
+  pointer-events: all;
+  /* background: #12D8FA; */
+  /* pointer-events: None; */
 }
 
 .containers {
@@ -279,6 +281,12 @@
 .bttn:hover{
   background-image:linear-gradient(to right, #1FA2FF 0%, #12D8FA 51%, #1FA2FF 100%);
 }
+.bttn_a:hover{
+  background-image:linear-gradient(to right, #1FA2FF 0%, #12D8FA 51%, #1FA2FF 100%);
+}
+.bttn_b:hover{
+  background-image:linear-gradient(to right, #1FA2FF 0%, #12D8FA 51%, #1FA2FF 100%);
+}
 
 .bttn_a {
   margin-top: 1rem;
@@ -307,12 +315,6 @@
   pointer-events: all;
 }
 
-
-
-
-.bttn_a:hover{
-    background-image:linear-gradient(to right, #1fff32 0%, #12fa44 51%, #ceff1f 100%);
-}
 
 .typed-text{
     font-family: 'Titillium Web',sans-serif;
@@ -527,5 +529,5 @@ ul {
 
 
 .subtitle{
-    color: orangered;
+    color: white;
 }

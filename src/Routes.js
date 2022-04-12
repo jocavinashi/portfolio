@@ -7,7 +7,7 @@ import {
   BrowserRouter
 } from "react-router-dom";
 import Menu from "./landing/Menu.js";
-import Particles from 'react-tsparticles';
+import Particles from 'react-particles-js';
 import Typed from "react-typed";
 import "./landing/Menu.css"
 import About from "./landing/About.js";
